@@ -3,6 +3,11 @@ function hyperscript(nodeName, attributes, ...args) {
   return { nodeName, attributes, children };
 }
 
+const benefits = [
+  "Better understanding",
+  "More control over what is happening",
+];
+
 /** @jsx hyperscript */
 let vnode = (
   <div id="jsx">
@@ -13,6 +18,13 @@ let vnode = (
       This is an HTML page with a single babel-transpiled JS file and no
       dependencies. It is rendering DOM via JSX without any frameworks.
     </p>
+
+    <h2>Benefits:</h2>
+    <ul>
+      {benefits.map((ability) => (
+        <li>{ability}</li>
+      ))}
+    </ul>
   </div>
 );
 
@@ -29,3 +41,6 @@ function render(vnode) {
 
 const dom = render(vnode);
 document.body.appendChild(dom);
+
+let json = JSON.stringify(vnode, null, 4);
+document.body.appendChild(render(<pre id="vdom">{json}</pre>));

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel src -d dist --copy-files"
+    "build": "rm -rf dist && npx babel src -d dist --copy-files",
+    "prestart": "npm run build",
+    "start": "npx live-server --open=./dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/node": "^7.10.5",
-    "@babel/preset-react": "^7.10.4"
+    "@babel/preset-react": "^7.10.4",
+    "live-server": "^1.2.1"
   }
 }
