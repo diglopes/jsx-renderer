@@ -15,3 +15,17 @@ let vnode = (
     </p>
   </div>
 );
+
+function render(vnode) {
+  if (vnode.split) return document.createTextNode(vnode);
+  const node = document.createElement(vnode.nodeName);
+  const attributes = vnode.attributes || {};
+  Object.keys(attributes).forEach((key) =>
+    node.setAttribute(key, attributes[key])
+  );
+  (vnode.children || []).forEach((child) => node.appendChild(render(child)));
+  return node;
+}
+
+const dom = render(vnode);
+document.body.appendChild(dom);
